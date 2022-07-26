@@ -1,5 +1,8 @@
 package com.chrisabbod.githubrepolist
 
+import android.content.Context
+import android.net.ConnectivityManager
+import android.net.NetworkCapabilities
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -24,7 +27,11 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.rvRepoList.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+        binding.rvRepoList.layoutManager =
+            LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         binding.rvRepoList.adapter = RepoListAdapter(items)
+
+        val url =
+            "https://api.github.com/search/repositories?q=mario+language:kotlin&sort=stars&order=desc"
     }
 }
