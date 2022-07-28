@@ -2,8 +2,11 @@ package com.chrisabbod.githubrepolist
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.chrisabbod.githubrepolist.databinding.ActivityMainBinding
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
 
@@ -28,7 +31,14 @@ class MainActivity : AppCompatActivity() {
             LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         binding.rvRepoList.adapter = RepoListAdapter(items)
 
-        val url =
-            "https://api.github.com/search/repositories?q=mario+language:kotlin&sort=stars&order=desc"
+        val githubAPI = RetrofitHelper.getInstance().create(GithubAPI::class.java)
+
+        GlobalScope.launch {
+            val result = githubAPI.getRepositories()
+
+            if (result != null) {
+                Log.d("Chris", result.toString())
+            }
+        }
     }
 }
