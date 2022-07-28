@@ -3,14 +3,15 @@ package com.chrisabbod.githubrepolist
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.chrisabbod.githubrepolist.data.Item
 import com.chrisabbod.githubrepolist.databinding.ItemRepoBinding
 
-class RepoListAdapter(private val items: List<String>) :
+class RepoListAdapter(private val items: List<Item>) :
     RecyclerView.Adapter<RepoListAdapter.RepoListViewHolder>() {
 
     inner class RepoListViewHolder(itemBinding: ItemRepoBinding) :
         RecyclerView.ViewHolder(itemBinding.root) {
-        val tvTitle = itemBinding.tvId
+        val tvId = itemBinding.tvId
         val tvName = itemBinding.tvName
         val tvDescription = itemBinding.tvDescription
     }
@@ -26,7 +27,9 @@ class RepoListAdapter(private val items: List<String>) :
     }
 
     override fun onBindViewHolder(holder: RepoListViewHolder, position: Int) {
-        holder.tvTitle.text = items[position]
+        holder.tvId.text = items[position].toString()
+        holder.tvName.text = items[position].toString()
+        holder.tvDescription.text = items[position].toString()
     }
 
     override fun getItemCount(): Int {
