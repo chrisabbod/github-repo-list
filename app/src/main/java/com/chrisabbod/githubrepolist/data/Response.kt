@@ -1,10 +1,14 @@
 package com.chrisabbod.githubrepolist.data
 
-data class RepoArray(val repo: List<Item>)
+import com.google.gson.annotations.SerializedName
 
-data class Item(
-    val id: Int,
-    val name: String,
-    val private: Boolean,
-    val description: String
+data class Data(
+    @SerializedName("id")
+    var id: Int,
+    @SerializedName("name")
+    var name: String,
+    @SerializedName("full_name")
+    var fullName: String,
+    @SerializedName("description")
+    var description: String
 )

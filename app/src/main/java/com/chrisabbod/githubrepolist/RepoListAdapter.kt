@@ -3,10 +3,10 @@ package com.chrisabbod.githubrepolist
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.chrisabbod.githubrepolist.data.Item
+import com.chrisabbod.githubrepolist.data.Data
 import com.chrisabbod.githubrepolist.databinding.ItemRepoBinding
 
-class RepoListAdapter(private val items: List<Item>) :
+class RepoListAdapter(private val items: List<Data>) :
     RecyclerView.Adapter<RepoListAdapter.RepoListViewHolder>() {
 
     inner class RepoListViewHolder(itemBinding: ItemRepoBinding) :

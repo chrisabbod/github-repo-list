@@ -1,14 +1,10 @@
 package com.chrisabbod.githubrepolist
 
-import android.R
-import android.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.chrisabbod.githubrepolist.data.Item
 import com.chrisabbod.githubrepolist.databinding.ActivityMainBinding
-import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
@@ -33,10 +29,11 @@ class MainActivity : AppCompatActivity() {
 
         val coroutineScope = CoroutineScope(mainActivityJob + Dispatchers.Main)
         coroutineScope.launch {
-            val result = githubAPI.getRepositories()
-            val resultList: List<Item> = result.repo
-            binding.rvRepoList.adapter = RepoListAdapter(resultList)
-            Log.d("Chris", result.toString())
+            val result = githubAPI.getRepositories().body()
+
+            if (result != null) {
+                binding.rvRepoList.adapter = RepoListAdapter(result)
+            }
         }
     }
 }
