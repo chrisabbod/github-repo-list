@@ -26,7 +26,7 @@ class MainActivity : AppCompatActivity() {
             LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
 
         coroutineScope.launch(Dispatchers.Main) {
-            val result = getRepoListAsync().await()
+            val result = getRepoListAsync()
 
             if (result != null) {
                 binding.rvRepoList.adapter = RepoListAdapter(result)
@@ -34,8 +34,8 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun getRepoListAsync(): Deferred<List<Data>?> =
-        coroutineScope.async(Dispatchers.IO) {
-            return@async githubAPI.getRepositories().body()
+    private suspend fun getRepoListAsync(): List<Data>? =
+        withContext(Dispatchers.IO) {
+            return@withContext githubAPI.getRepositories().body()
         }
 }
