@@ -3,6 +3,8 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Chris/Documents/Android/github-repo-list/app/src/main/res/layout/activity_main.xml" value="0.3546875" />
+        <entry key="..\:/Users/Chris/Documents/Android/github-repo-list/app/src/main/res/layout/item_repo.xml" value="0.3546875" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.31567028985507245" />
         <entry key="app/src/main/res/layout/item_repo.xml" value="0.23125" />
       </map>
