@@ -13,7 +13,17 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
 
     private val parentJob = Job()
-    private val coroutineScope = CoroutineScope(Dispatchers.IO + parentJob)
+    private val coroutineExceptionHandler: CoroutineExceptionHandler =
+        CoroutineExceptionHandler { _, throwable ->
+            coroutineScope.launch(Dispatchers.Main) {
+                Log.e("Coroutine Exception", "$throwable")
+            }
+        }
+    private val coroutineScope = CoroutineScope(
+        Dispatchers.IO +
+                parentJob +
+                coroutineExceptionHandler
+    )
 
     private val githubAPI: GithubAPI = RetrofitHelper.getInstance().create(GithubAPI::class.java)
 
